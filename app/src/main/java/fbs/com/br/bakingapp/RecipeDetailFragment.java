@@ -21,7 +21,7 @@ import fbs.com.br.bakingapp.model.Ingredient;
 import fbs.com.br.bakingapp.model.Recipe;
 import fbs.com.br.bakingapp.widget.UpdateBakingService;
 
-import static fbs.com.br.bakingapp.MainActivity.RECIPES;
+import static fbs.com.br.bakingapp.MainActivity.SELECTED_RECIPES;
 
 public class RecipeDetailFragment extends Fragment {
 
@@ -43,11 +43,11 @@ public class RecipeDetailFragment extends Fragment {
 
 
         if(savedInstanceState != null) {
-            recipe = savedInstanceState.getParcelableArrayList(RECIPES);
+            recipe = savedInstanceState.getParcelableArrayList(SELECTED_RECIPES);
 
         }
         else {
-            recipe =getArguments().getParcelableArrayList(RECIPES);
+            recipe =getArguments().getParcelableArrayList(SELECTED_RECIPES);
         }
 
         List<Ingredient> ingredients = recipe.get(0).getIngredients();
@@ -70,7 +70,7 @@ public class RecipeDetailFragment extends Fragment {
                         "Measure: "+a.getMeasure()+"\n");
             });
 
-        recyclerView=(RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);
         LinearLayoutManager mLayoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -87,7 +87,7 @@ public class RecipeDetailFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle currentState) {
         super.onSaveInstanceState(currentState);
-        currentState.putParcelableArrayList(RECIPES, (ArrayList<? extends Parcelable>) recipe);
+        currentState.putParcelableArrayList(SELECTED_RECIPES, (ArrayList<? extends Parcelable>) recipe);
         currentState.putString("Title",recipeName);
     }
 

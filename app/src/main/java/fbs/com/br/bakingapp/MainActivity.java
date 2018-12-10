@@ -21,10 +21,10 @@ import fbs.com.br.bakingapp.model.Recipe;
 
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener {
 
-    static String ALL="all";
-    static String RECIPES="recipes";
-    static String STEPS="steps";
-    static String INDEX="index";
+    static String ALL_RECIPES="All_Recipes";
+    static String SELECTED_RECIPES="Selected_Recipes";
+    static String SELECTED_STEPS="Selected_Steps";
+    static String SELECTED_INDEX="Selected_Index";
 
     @Nullable
     private SimpleIdlingResource mIdlingResource;
@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        //Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        //setSupportActionBar(myToolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("Baking App");
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
         Bundle selectedRecipeBundle = new Bundle();
         List<Recipe> selectedRecipe = new ArrayList<Recipe>();
         selectedRecipe.add(selectedItemIndex);
-        selectedRecipeBundle.putParcelableArrayList(RECIPES, (ArrayList<? extends Parcelable>) selectedRecipe);
+        selectedRecipeBundle.putParcelableArrayList(SELECTED_RECIPES, (ArrayList<? extends Parcelable>) selectedRecipe);
 
         final Intent intent = new Intent(this, RecipeDetailActivity.class);
         intent.putExtras(selectedRecipeBundle);

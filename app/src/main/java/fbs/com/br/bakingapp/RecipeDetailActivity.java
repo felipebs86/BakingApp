@@ -2,6 +2,7 @@ package fbs.com.br.bakingapp;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -64,7 +65,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        //setSupportActionBar(myToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(recipeName);
@@ -80,18 +81,12 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
                     } else if (fm.getBackStackEntryCount() > 0) {
                         //go back to "Recipe" screen
                         finish();
-
                     }
-
-
                 }
                 else {
-
                     //go back to "Recipe" screen
                     finish();
-
                 }
-
             }
         });
     }

@@ -41,7 +41,6 @@ import java.util.List;
 import fbs.com.br.bakingapp.model.Recipe;
 import fbs.com.br.bakingapp.model.Step;
 
-import static fbs.com.br.bakingapp.MainActivity.RECIPES;
 import static fbs.com.br.bakingapp.RecipeDetailActivity.SELECTED_INDEX;
 import static fbs.com.br.bakingapp.RecipeDetailActivity.SELECTED_STEPS;
 
@@ -90,7 +89,7 @@ public class RecipeStepDetailFragment extends Fragment {
                 recipeName=getArguments().getString("Title");
             }
             else {
-                recipe =getArguments().getParcelableArrayList(RECIPES);
+                recipe =getArguments().getParcelableArrayList(SELECTED_STEPS);
                 steps=(ArrayList<Step>)recipe.get(0).getSteps();
                 selectedIndex=0;
             }

@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +74,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecyclerVi
 
         if (!"".equals(imageUrl)) {
             Uri builtUri = Uri.parse(imageUrl).buildUpon().build();
-//            Picasso.with(context).load(builtUri).into(holder.imageRecyclerView);
+            Picasso.with(context).load(builtUri).into(holder.imageRecyclerView);
         }
 
     }
