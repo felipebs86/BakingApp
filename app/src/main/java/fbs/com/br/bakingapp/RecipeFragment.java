@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import fbs.com.br.bakingapp.IdlingResource.SimpleIdlingResource;
 import fbs.com.br.bakingapp.adapters.RecipeAdapter;
 import fbs.com.br.bakingapp.model.Recipe;
@@ -42,8 +40,6 @@ public class RecipeFragment extends Fragment  {
         RecipeAdapter recipesAdapter = new RecipeAdapter((MainActivity)getActivity());
         recyclerView.setAdapter(recipesAdapter);
 
-
-
         if (rootView.getTag()!=null && rootView.getTag().equals("phone-land")){
             GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(),4);
             recyclerView.setLayoutManager(mLayoutManager);
@@ -62,7 +58,6 @@ public class RecipeFragment extends Fragment  {
             idlingResource.setIdleState(false);
         }
 
-
         recipe.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
@@ -75,20 +70,15 @@ public class RecipeFragment extends Fragment  {
                 recipesBundle.putParcelableArrayList(ALL_RECIPES, (ArrayList<? extends Parcelable>) recipes);
 
                 recipesAdapter.setRecipeData((ArrayList<Recipe>) recipes, getContext());
-                if (idlingResource != null) {
-                    idlingResource.setIdleState(true);
-                }
-
+                idlingResource.setIdleState(true);
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Log.v("http fail: ", t.getMessage());
+                Log.e("Falha na comunicação: ", t.getMessage());
             }
         });
 
         return rootView;
     }
-
-
 }

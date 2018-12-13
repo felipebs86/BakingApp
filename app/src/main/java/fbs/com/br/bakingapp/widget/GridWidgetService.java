@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-
 import java.util.List;
-
 import fbs.com.br.bakingapp.R;
-
 import static fbs.com.br.bakingapp.widget.BakingWidgetProvider.ingredientsList;
 
 public class GridWidgetService extends RemoteViewsService {
@@ -22,7 +19,7 @@ public class GridWidgetService extends RemoteViewsService {
 
     class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
-        Context mContext = null;
+        Context mContext;
 
         public GridRemoteViewsFactory(Context context, Intent intent) {
             mContext = context;

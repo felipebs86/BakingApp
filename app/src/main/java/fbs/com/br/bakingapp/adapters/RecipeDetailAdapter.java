@@ -6,16 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.List;
-
 import fbs.com.br.bakingapp.R;
 import fbs.com.br.bakingapp.model.Recipe;
 import fbs.com.br.bakingapp.model.Step;
 
 public class RecipeDetailAdapter extends RecyclerView.Adapter<RecipeDetailAdapter.RecyclerViewHolder> {
 
-    List<Step> lSteps;
+    private List<Step> lSteps;
     private String recipeName;
 
     final private ListItemClickListener lOnClickListener;
@@ -29,10 +27,9 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecipeDetailAdapte
     }
 
 
-    public void setMasterRecipeData(List<Recipe> recipesIn, Context context) {
-        //lSteps = recipesIn;
-        lSteps= recipesIn.get(0).getSteps();
-        recipeName=recipesIn.get(0).getName();
+    public void setMasterRecipeData(List<Recipe> recipesIn) {
+        lSteps = recipesIn.get(0).getSteps();
+        recipeName = recipesIn.get(0).getName();
         notifyDataSetChanged();
     }
 
@@ -52,7 +49,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecipeDetailAdapte
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-       holder.textRecyclerView.setText(lSteps.get(position).getId()+". "+ lSteps.get(position).getShortDescription());
+       holder.textRecyclerView.setText(lSteps.get(position).getId() + ". "+ lSteps.get(position).getShortDescription());
 
     }
 
@@ -68,7 +65,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecipeDetailAdapte
         public RecyclerViewHolder(View itemView) {
             super(itemView);
 
-            textRecyclerView = (TextView) itemView.findViewById(R.id.shortDescription);
+            textRecyclerView = itemView.findViewById(R.id.shortDescription);
 
             itemView.setOnClickListener(this);
         }

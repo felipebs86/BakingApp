@@ -39,18 +39,9 @@ public class Step implements Parcelable {
         return videoURL;
     }
 
-    public void setVideoURL(String videoURL) {
-        this.videoURL = videoURL;
-    }
-
     public String getThumbnailURL() {
         return thumbnailURL;
     }
-
-    public void setThumbnailURL(String thumbnailURL) {
-        this.thumbnailURL = thumbnailURL;
-    }
-
 
     protected Step(Parcel in) {
         id = in.readByte() == 0x00 ? null : in.readInt();
@@ -73,6 +64,7 @@ public class Step implements Parcelable {
             dest.writeByte((byte) (0x01));
             dest.writeInt(id);
         }
+
         dest.writeString(shortDescription);
         dest.writeString(description);
         dest.writeString(videoURL);

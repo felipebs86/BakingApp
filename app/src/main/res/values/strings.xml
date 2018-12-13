@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Baking App</string>
-    <string name="appwidget_text">RECIPE INGREDIENTS WILL APPEAR HERE AFTER LAUNCHING &quot;BAKING APP&quot;</string>
+    <string name="appwidget_text">A RECEITA IRÁ APARECER APÓS O CARREGAMENTO DO APLICATIVO &quot;BAKING APP&quot;</string>
 </resources>

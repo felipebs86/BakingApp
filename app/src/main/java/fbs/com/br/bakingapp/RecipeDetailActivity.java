@@ -23,7 +23,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
     static String STACK_RECIPE_DETAIL="STACK_RECIPE_DETAIL";
     static String STACK_RECIPE_STEP_DETAIL="STACK_RECIPE_STEP_DETAIL";
 
-
     private ArrayList<Recipe> recipe;
     String recipeName;
 
@@ -54,46 +53,35 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container2, fragment2).addToBackStack(STACK_RECIPE_STEP_DETAIL)
                         .commit();
-
             }
-
-
 
     } else {
         recipeName= savedInstanceState.getString("Title");
     }
 
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         //setSupportActionBar(myToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(recipeName);
 
-        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getSupportFragmentManager();
-                if (findViewById(R.id.fragment_container2)==null) {
-                    if (fm.getBackStackEntryCount() > 1) {
-                        //go back to "Recipe Detail" screen
-                        fm.popBackStack(STACK_RECIPE_DETAIL, 0);
-                    } else if (fm.getBackStackEntryCount() > 0) {
-                        //go back to "Recipe" screen
-                        finish();
-                    }
-                }
-                else {
-                    //go back to "Recipe" screen
+        myToolbar.setNavigationOnClickListener(v -> {
+            FragmentManager fm = getSupportFragmentManager();
+            if (findViewById(R.id.fragment_container2)==null) {
+                if (fm.getBackStackEntryCount() > 1) {
+                    fm.popBackStack(STACK_RECIPE_DETAIL, 0);
+                } else if (fm.getBackStackEntryCount() > 0) {
                     finish();
                 }
+            }
+            else {
+                finish();
             }
         });
     }
 
     @Override
     public void onListItemClick(List<Step> stepsOut, int selectedItemIndex, String recipeName) {
-
 
         final RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -110,14 +98,12 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_container2, fragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
                     .commit();
-
         }
         else {
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
                     .commit();
         }
-
     }
 
     @Override

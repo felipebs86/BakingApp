@@ -1,20 +1,3 @@
-
-/*
- * Copyright 2017 Nikos Vaggalis
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package fbs.com.br.bakingapp.adapters;
 
 import android.content.Context;
@@ -25,12 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import fbs.com.br.bakingapp.R;
 import fbs.com.br.bakingapp.model.Recipe;
 
@@ -76,18 +56,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecyclerVi
             Uri builtUri = Uri.parse(imageUrl).buildUpon().build();
             Picasso.with(context).load(builtUri).into(holder.imageRecyclerView);
         }
-
     }
 
     @Override
     public int getItemCount() {
-        return recipeList !=null ? recipeList.size():0 ;
+        return recipeList != null ? recipeList.size() : 0 ;
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textRecyclerView;
         ImageView imageRecyclerView;
-
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);

@@ -1,4 +1,3 @@
-
 package fbs.com.br.bakingapp.retrofit;
 
 import com.google.gson.Gson;
@@ -21,7 +20,6 @@ public final class RetrofitBuilder {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .callFactory(httpClientBuilder.build())
                 .build().create(RecipeInterface.class);
-
 
         return recipeInterface;
     }

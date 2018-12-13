@@ -2,7 +2,6 @@ package fbs.com.br.bakingapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,24 +35,8 @@ public class Recipe implements Parcelable {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public List<Step> getSteps() {
         return steps;
-    }
-
-    public void setSteps(List<Step> steps) {
-        this.steps = steps;
-    }
-
-    public Integer getServings() {
-        return servings;
-    }
-
-    public void setServings(Integer servings) {
-        this.servings = servings;
     }
 
     public String getImage() {
@@ -65,7 +48,7 @@ public class Recipe implements Parcelable {
     }
 
 
-    protected Recipe(Parcel in) {
+    Recipe(Parcel in) {
         id = in.readByte() == 0x00 ? null : in.readInt();
         name = in.readString();
         if (in.readByte() == 0x01) {
@@ -97,25 +80,30 @@ public class Recipe implements Parcelable {
             dest.writeByte((byte) (0x01));
             dest.writeInt(id);
         }
+
         dest.writeString(name);
+
         if (ingredients == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(ingredients);
         }
+
         if (steps == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(steps);
         }
+
         if (servings == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeInt(servings);
         }
+
         dest.writeString(image);
     }
 

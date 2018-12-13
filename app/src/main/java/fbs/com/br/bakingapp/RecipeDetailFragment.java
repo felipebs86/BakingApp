@@ -41,10 +41,8 @@ public class RecipeDetailFragment extends Fragment {
 
         recipe = new ArrayList<>();
 
-
         if(savedInstanceState != null) {
             recipe = savedInstanceState.getParcelableArrayList(SELECTED_RECIPES);
-
         }
         else {
             recipe =getArguments().getParcelableArrayList(SELECTED_RECIPES);
@@ -58,7 +56,6 @@ public class RecipeDetailFragment extends Fragment {
 
         ArrayList<String> recipeIngredientsForWidgets= new ArrayList<>();
 
-
         ingredients.forEach((a) ->
             {
                 textView.append("\u2022 "+ a.getIngredient()+"\n");
@@ -70,15 +67,14 @@ public class RecipeDetailFragment extends Fragment {
                         "Measure: "+a.getMeasure()+"\n");
             });
 
-        recyclerView = (RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);
+        recyclerView = rootView.findViewById(R.id.recipe_detail_recycler);
         LinearLayoutManager mLayoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
         RecipeDetailAdapter mRecipeDetailAdapter =new RecipeDetailAdapter((RecipeDetailActivity)getActivity());
         recyclerView.setAdapter(mRecipeDetailAdapter);
-        mRecipeDetailAdapter.setMasterRecipeData(recipe,getContext());
+        mRecipeDetailAdapter.setMasterRecipeData(recipe);
 
-        //update widget
         UpdateBakingService.startBakingService(getContext(),recipeIngredientsForWidgets);
 
         return rootView;
