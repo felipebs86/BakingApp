@@ -204,18 +204,17 @@ public class RecipeStepDetailFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        releasePlayer();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        releasePlayer();
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        saveStateFromPlayer();
         if (Util.SDK_INT > 23) {
             releasePlayer();
         }
@@ -224,6 +223,7 @@ public class RecipeStepDetailFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        saveStateFromPlayer();
         if (Util.SDK_INT <= 23){
             releasePlayer();
         }
@@ -231,11 +231,17 @@ public class RecipeStepDetailFragment extends Fragment {
 
     private void releasePlayer() {
         if (mPlayer != null) {
+            saveStateFromPlayer();
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
+    private void saveStateFromPlayer() {
+        if (mPlayer != null) {
             mPlaybackPosition = mPlayer.getCurrentPosition();
             mCurrentWindow = mPlayer.getCurrentWindowIndex();
             mPlayWhenReady = mPlayer.getPlayWhenReady();
-            mPlayer.release();
-            mPlayer = null;
         }
     }
 
